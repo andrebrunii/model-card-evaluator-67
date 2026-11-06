@@ -192,4 +192,3 @@ python src/run_assessment.py
 * 📊 `data/cbra_assessment_gemma4.json`: Report CBRA strutturato per `gemma4`.
 * 📊 `data/cbra_assessment_qwen3_heretic.json`: Report CBRA strutturato per `R4C3R/qwen3-8b-heretic:q4_k_m`.
 * 📑 `data/cbra_comparison_report.md`: Tabella comparativa Markdown generata dinamicamente.
-```
