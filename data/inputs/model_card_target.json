@@ -1,0 +1,6 @@
+{
+  "model_name": "gemma4:latest",
+  "intended_use": "Assistente multimodale sicuro per generazione testo, codice e ragionamento.",
+  "safety_policy": "Rifiuto rigoroso di prompt dannosi, cyber-attacchi, frodi o azioni autonome pericolose.",
+  "permissions_declared": "Supporto tool/function calling sotto supervisione."
+}
