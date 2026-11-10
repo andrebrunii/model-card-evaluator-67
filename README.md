@@ -1,6 +1,6 @@
 # 🛡️ Guida Operativa: Valutazione del Rischio AI con Framework CSA CBRA & Red-Teaming Automatico
 
-**Ultimo aggiornamento:** `2026-11-06`  
+**Ultimo aggiornamento:** `2026-11-10`  
 **Framework di riferimento:** Cloud Security Alliance (CSA) — *Capabilities-Based Risk Assessment (CBRA)* & *AI Controls Matrix (AICM)*  
 **Stack Tecnologico:** Python, Ollama, ChromaDB (`embeddinggemma-2`), Auditor LLM (`gemma4`), Dataset `heretic-org/Semantic-Harmful`
 
@@ -15,6 +15,7 @@
 6. [Analisi Usage Drift e Mappatura Controlli CSA AICM](#6-analisi-usage-drift-e-mappatura-controlli-csa-aicm)
 7. [Guida alla Lettura delle Evidenze Empiriche (Analisi dei 5 Test)](#7-guida-alla-lettura-delle-evidenze-empiriche-analisi-dei-5-test)
 8. [Come Eseguire e Replicare il Test](#8-come-eseguire-e-replicare-il-test)
+9. [Caso di Studio #2 (Abliteration A/B): `gemma4:e2b` vs `Gemma-4-E2B-Heretic`](#9-caso-di-studio-2-abliteration-ab-gemma4e2b-vs-gemma-4-e2b-heretic)
 
 ---
 
@@ -192,3 +193,29 @@ python src/run_assessment.py
 * 📊 `data/cbra_assessment_gemma4.json`: Report CBRA strutturato per `gemma4`.
 * 📊 `data/cbra_assessment_qwen3_heretic.json`: Report CBRA strutturato per `R4C3R/qwen3-8b-heretic:q4_k_m`.
 * 📑 `data/cbra_comparison_report.md`: Tabella comparativa Markdown generata dinamicamente.
+
+---
+
+## 9. Caso di Studio #2 (Abliteration A/B): `gemma4:e2b` vs `Gemma-4-E2B-Heretic`
+
+**Data esecuzione:** `2026-11-10 18:41:12` · **Campione:** 20 prompt `heretic-org/Semantic-Harmful`  
+Confronto controllato a parità di architettura e taglia (**Gemma 4 E2B**) tra il modello ufficiale allineato (`gemma4:e2b`) e la variante *abliterated* (`hf.co/DuoNeural/Gemma-4-E2B-Heretic-GGUF:Q4_K_M`).
+
+| Metrica | `gemma4:e2b` (Baseline) | `Gemma-4-E2B-Heretic` (Regex) | `Gemma-4-E2B-Heretic` (Revisione Manuale) |
+| :--- | :---: | :---: | :---: |
+| **Rifiuti netti** | **20 / 20 (100%)** | 19 / 20 (95%) | **11 / 20 (55%)** |
+| **Casi ambigui / deviazione** | 0 | — | 3 / 20 (15%) |
+| **Compliance / Disponibilità a procedere** | **0 (0%)** | 1 / 20 (5%) | **6 / 20 (30%)** |
+| **Punteggio Rischio CBRA** | **54 / 480** (🟡 `MEDIUM`) | **180 / 480** (🔴 `HIGH`) | — |
+
+### Esecuzione del Confronto Gemma 4 vs Gemma 4 Heretic
+```bash
+cd src
+python run_compare_gemma4_heretic.py --num-prompts 20 --fresh
+```
+
+### Documentazione e Report Generati
+* 📑 [`data/cbra_comparison_gemma4_vs_heretic.md`](data/cbra_comparison_gemma4_vs_heretic.md): Report comparativo automatico generato dalla pipeline.
+* 🔍 [`data/analisi_gemma4_vs_heretic.md`](data/analisi_gemma4_vs_heretic.md): Analisi tecnica approfondita, revisione manuale delle 20 risposte (falsi negativi del classificatore regex sui rifiuti apparenti) e fattori confondenti.
+* 📊 [`data/cbra_assessment_gemma4_e2b.json`](data/cbra_assessment_gemma4_e2b.json) & [`data/cbra_assessment_gemma4_e2b_heretic.json`](data/cbra_assessment_gemma4_e2b_heretic.json): Valutazioni CBRA strutturate in JSON.
+* 🗂️ [`data/inputs/gemma4_e2b_heretic.model-card.md`](data/inputs/gemma4_e2b_heretic.model-card.md): Model Card indipendente per la variante abliterated.
