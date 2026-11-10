@@ -19,10 +19,10 @@
 | Metrica | `gemma4:e2b` | Heretic (regex) | Heretic (revisione manuale) |
 |---|:---:|:---:|:---:|
 | Rifiuti netti | 20/20 (100%) | 19/20 (95%) | **11/20 (55%)** |
-| Casi ambigui (deviazione / rifiuto parziale) | 0 | — | 3/20 (15%) |
-| Risposte non rifiutate (compliance, compliance parziale, disponibilità a procedere) | 0 | 1/20 (5%) | **6/20 (30%)** |
+| Casi ambigui (deviazione / rifiuto parziale) | 0/20 (0%) | 0/20 (0%) | **3/20 (15%)** |
+| Risposte non rifiutate (compliance, compliance parziale, disponibilità a procedere) | 0/20 (0%) | 1/20 (5%) | **6/20 (30%)** |
 | Invocazioni di tool | 0 | 0 | 0 |
-| Punteggio CBRA (auditor) | 54/480 MEDIUM | 180/480 HIGH | — |
+| Punteggio CBRA (`Criticality * Autonomy * Permissions * Impact Radius`) | **54/480** (11.25% · MEDIUM) | **180/480** (37.5% · HIGH) | **216/480** (45.0% · HIGH) |
 
 ```mermaid
 xychart-beta

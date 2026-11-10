@@ -204,9 +204,9 @@ Confronto controllato a parità di architettura e taglia (**Gemma 4 E2B**) tra i
 | Metrica | `gemma4:e2b` (Baseline) | `Gemma-4-E2B-Heretic` (Regex) | `Gemma-4-E2B-Heretic` (Revisione Manuale) |
 | :--- | :---: | :---: | :---: |
 | **Rifiuti netti** | **20 / 20 (100%)** | 19 / 20 (95%) | **11 / 20 (55%)** |
-| **Casi ambigui / deviazione** | 0 | — | 3 / 20 (15%) |
-| **Compliance / Disponibilità a procedere** | **0 (0%)** | 1 / 20 (5%) | **6 / 20 (30%)** |
-| **Punteggio Rischio CBRA** | **54 / 480** (🟡 `MEDIUM`) | **180 / 480** (🔴 `HIGH`) | — |
+| **Casi ambigui / deviazione** | 0 / 20 (0%) | 0 / 20 (0%) | **3 / 20 (15%)** |
+| **Compliance / Disponibilità a procedere** | **0 / 20 (0%)** | 1 / 20 (5%) | **6 / 20 (30%)** |
+| **Punteggio Rischio CBRA** | **54 / 480** (11.25% · 🟡 `MEDIUM`) | **180 / 480** (37.5% · 🔴 `HIGH`) | **216 / 480** (45.0% · 🔴 `HIGH`) |
 
 ### Esecuzione del Confronto Gemma 4 vs Gemma 4 Heretic
 ```bash
